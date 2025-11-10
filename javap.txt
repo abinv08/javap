@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+class ArrayOperations {
+    int[] arr;
+    int n;
+
+    void getInput() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of elements: ");
+        n = sc.nextInt();
+        arr = new int[n];
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+    }
+
+    void findMinMax() {
+        int min = arr[0], max = arr[0];
+        for (int i = 1; i < n; i++) {
+            if (arr[i] < min)
+                min = arr[i];
+            if (arr[i] > max)
+                max = arr[i];
+        }
+        System.out.println("Minimum element = " + min);
+        System.out.println("Maximum element = " + max);
+    }
+
+    void findSum() {
+        int sum = 0;
+        for (int i = 0; i < n; i++)
+            sum += arr[i];
+        System.out.println("Sum of elements = " + sum);
+    }
+
+    void displayUnique() {
+        System.out.print("Unique elements: ");
+        for (int i = 0; i < n; i++) {
+            boolean isUnique = true;
+            for (int j = 0; j < n; j++) {
+                if (i != j && arr[i] == arr[j]) {
+                    isUnique = false;
+                    break;
+                }
+            }
+            if (isUnique)
+                System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        ArrayOperations ao = new ArrayOperations();
+        ao.getInput();
+        ao.findSum();
+        ao.findMinMax();
+        ao.displayUnique();
+    }
+}
