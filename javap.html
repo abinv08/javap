@@ -20,6 +20,7 @@
 
 <h2>Array Operations Example:</h2>
 <pre><code>
+
 import java.util.Scanner;
 
 class ArrayOperations {
@@ -40,10 +41,10 @@ class ArrayOperations {
     void findMinMax() {
         int min = arr[0], max = arr[0];
         for (int i = 1; i &lt; n; i++) {
-            if (arr[i] &gt; max)
-                max = arr[i];
             if (arr[i] &lt; min)
                 min = arr[i];
+            if (arr[i] &gt; max)
+                max = arr[i];
         }
         System.out.println("Minimum element = " + min);
         System.out.println("Maximum element = " + max);
@@ -80,6 +81,85 @@ class ArrayOperations {
         ao.displayUnique();
     }
 }
+
+
+
+import java.util.Scanner;
+
+// Base class
+class Employee {
+    String name;
+    int empId;
+    double salary;
+
+    Employee(String name, int empId, double salary) {
+        this.name = name;
+        this.empId = empId;
+        this.salary = salary;
+    }
+
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+// Subclass Developer
+class Developer extends Employee {
+    String project;
+
+    Developer(String name, int empId, double salary, String project) {
+        super(name, empId, salary); // calling parent constructor
+        this.project = project;
+    }
+
+    void display() {
+        System.out.println("\n--- Developer Details ---");
+        super.display(); // call parent display
+        System.out.println("Project: " + project);
+    }
+}
+
+// Subclass Tester
+class Tester extends Employee {
+    String tool;
+
+    Tester(String name, int empId, double salary, String tool) {
+        super(name, empId, salary);
+        this.tool = tool;
+    }
+
+    void display() {
+        System.out.println("\n--- Tester Details ---");
+        super.display();
+        System.out.println("Testing Tool: " + tool);
+    }
+}
+
+public class EmployeeDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter Developer details (Name EmpId Salary Project):");
+        String dName = sc.next();
+        int dId = sc.nextInt();
+        double dSal = sc.nextDouble();
+        String dProj = sc.next();
+        Developer dev = new Developer(dName, dId, dSal, dProj);
+
+        System.out.println("Enter Tester details (Name EmpId Salary Tool):");
+        String tName = sc.next();
+        int tId = sc.nextInt();
+        double tSal = sc.nextDouble();
+        String tTool = sc.next();
+        Tester test = new Tester(tName, tId, tSal, tTool);
+
+        dev.display();
+        test.display();
+    }
+}
+
 </code></pre>
 
 </body>
