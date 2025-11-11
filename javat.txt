@@ -1,0 +1,130 @@
+
+class MyThread implements Runnable {
+    private String threadName;
+
+   
+    MyThread(String name) {
+        threadName = name;
+    }
+
+ 
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(threadName + " is running: " + i);
+            try {
+                Thread.sleep(500); // pause for 0.5 seconds
+            } catch (InterruptedException e) {
+                System.out.println(threadName + " interrupted.");
+            }
+        }
+        System.out.println(threadName + " has finished execution.");
+    }
+}
+
+
+public class RunnableDemo {
+    public static void main(String[] args) {
+       
+        MyThread obj1 = new MyThread("Thread-1");
+        MyThread obj2 = new MyThread("Thread-2");
+
+       
+        Thread t1 = new Thread(obj1);
+        Thread t2 = new Thread(obj2);
+
+      
+        t1.start();
+        t2.start();
+    }
+}
+
+
+// AIM: Develop a Java program to create multiple threads using classes
+
+// Step 1: Create a class that extends Thread
+class ThreadOne extends Thread {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("ThreadOne: " + i);
+            try {
+                Thread.sleep(500); // pause for 0.5 seconds
+            } catch (InterruptedException e) {
+                System.out.println("ThreadOne interrupted.");
+            }
+        }
+        System.out.println("ThreadOne finished execution.");
+    }
+}
+
+// Another thread class
+class ThreadTwo extends Thread {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("ThreadTwo: " + i);
+            try {
+                Thread.sleep(700); // pause for 0.7 seconds
+            } catch (InterruptedException e) {
+                System.out.println("ThreadTwo interrupted.");
+            }
+        }
+        System.out.println("ThreadTwo finished execution.");
+    }
+}
+
+// Step 2: Main class to run multiple threads
+public class MultipleThreadDemo {
+    public static void main(String[] args) {
+        // Create thread objects
+        ThreadOne t1 = new ThreadOne();
+        ThreadTwo t2 = new ThreadTwo();
+
+        // Start threads
+        t1.start();
+        t2.start();
+
+        // Optional: main thread also doing work
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Main Thread: " + i);
+            try {
+                Thread.sleep(600);
+            } catch (InterruptedException e) {
+                System.out.println("Main Thread interrupted.");
+            }
+        }
+
+        System.out.println("Main Thread finished execution.");
+    }
+}
+
+import java.io.FileReader;
+import java.io.Reader;
+import java.io.IOException;
+
+public class ReadFileCharacterByCharacter {
+    public static void main(String[] args) {
+        // Specify the file path (make sure the file exists at this location)
+        String filePath = "example.txt";
+
+        try {
+            // Create a Reader object (FileReader is a subclass of Reader)
+            Reader reader = new FileReader(filePath);
+
+            int character; // will hold each character read
+
+            System.out.println("Reading file character by character:\n");
+
+            // Read until end of file (-1 indicates EOF)
+            while ((character = reader.read()) != -1) {
+                // Print each character
+                System.out.print((char) character);
+            }
+
+            // Close the reader
+            reader.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file: " + e.getMessage());
+        }
+    }
+}
+

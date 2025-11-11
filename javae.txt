@@ -1,0 +1,132 @@
+import java.util.Scanner;
+
+public class MultipleCatchDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            //  ArithmeticException
+            System.out.print("Enter numerator: ");
+            int num = sc.nextInt();
+            System.out.print("Enter denominator: ");
+            int den = sc.nextInt();
+            int result = num / den;
+            System.out.println("Result: " + result);
+
+            //  ArrayIndexOutOfBoundsException
+            int[] arr = {10, 20, 30};
+            System.out.print("Enter index to access (0-2): ");
+            int index = sc.nextInt();
+            System.out.println("Value at index " + index + ": " + arr[index]);
+
+            //  NumberFormatException
+            System.out.print("Enter a number as string: ");
+            String str = sc.next();
+            int parsed = Integer.parseInt(str); // may throw NumberFormatException
+            System.out.println("Parsed integer: " + parsed);
+
+        } catch (ArithmeticException e) {
+            System.out.println("Caught ArithmeticException: Division by zero is not allowed.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Caught ArrayIndexOutOfBoundsException: Invalid array index.");
+        } catch (NumberFormatException e) {
+            System.out.println("Caught NumberFormatException: Input string is not a valid integer.");
+        } catch (Exception e) {
+            // Generic catch for any other exceptions
+            System.out.println("Caught Exception: " + e);
+        }
+
+        System.out.println("Program continues after handling exceptions.");
+        sc.close();
+    }
+}
+
+
+
+
+import java.util.*;
+
+
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message); // Call parent Exception constructor
+    }
+}
+
+public class UserDefinedExceptionDemo {
+   
+    static void checkAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException("Age must be 18 or above to vote!");
+        } else {
+            System.out.println("You are eligible to vote.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your age: ");
+        int age = sc.nextInt();
+
+       
+        try {
+            checkAge(age);
+        } catch (InvalidAgeException e) {
+            System.out.println("Caught Exception: " + e.getMessage());
+        } finally {
+            System.out.println("Program execution completed.");
+        }
+
+        sc.close();
+    }
+}
+
+
+
+// AIM: Create a program to throw a user-defined exception
+// if the product of two integers is greater than 50
+
+import java.util.*;
+
+
+class ProductTooLargeException extends Exception {
+    public ProductTooLargeException(String message) {
+        super(message); 
+    }
+}
+
+public class ProductCheck {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+       
+        System.out.print("Enter first number: ");
+        int num1 = sc.nextInt();
+
+        System.out.print("Enter second number: ");
+        int num2 = sc.nextInt();
+
+        int product = num1 * num2;
+        System.out.println("Product = " + product);
+
+        try {
+   
+            if (product > 50) {
+                throw new ProductTooLargeException("Error: Product is greater than 50!");
+            } else {
+                System.out.println("Product is within the allowed limit.");
+            }
+        }
+    
+        catch (ProductTooLargeException e) {
+            System.out.println("Caught Exception: " + e.getMessage());
+        } 
+        finally {
+            System.out.println("Program execution completed.");
+        }
+
+        sc.close();
+    }
+}
+
+

@@ -1,0 +1,78 @@
+import java.util.*;
+
+public class Hello {
+   public static void main(String[] arg) {
+      Scanner sc = new Scanner(System.in);
+
+      System.out.println("Enter the limit of columns:");
+      int col = sc.nextInt();
+      System.out.println("Enter the limit of rows:");
+      int row = sc.nextInt();
+
+      int a[][] = new int[row][col];
+
+      
+      System.out.println("Enter elements of the first matrix:");
+      for (int i = 0; i < row; i++) {
+         for (int j = 0; j < col; j++) {
+            a[i][j] = sc.nextInt();
+         }
+      }
+
+      System.out.println("The first matrix is:");
+      for (int i = 0; i < row; i++) {
+         for (int j = 0; j < col; j++) {
+            System.out.print(a[i][j] + " ");
+         }
+         System.out.println();
+      }
+
+  
+      System.out.println("Enter the number of columns for the second matrix:");
+      int col1 = sc.nextInt();
+      System.out.println("Enter the number of rows for the second matrix:");
+      int row1 = sc.nextInt();
+
+      int b[][] = new int[row1][col1];
+
+      System.out.println("Enter elements of the second matrix:");
+      for (int i = 0; i < row1; i++) {
+         for (int j = 0; j < col1; j++) {
+            b[i][j] = sc.nextInt();
+         }
+      }
+
+      System.out.println("The second matrix is:");
+      for (int i = 0; i < row1; i++) {
+         for (int j = 0; j < col1; j++) {
+            System.out.print(b[i][j] + " ");
+         }
+         System.out.println();
+      }
+
+    
+      if (col != row1) {
+         System.out.println("Multiplication not possible.");
+      } else {
+         int m[][] = new int[row][col1];
+         for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col1; j++) {
+               m[i][j] = 0;
+               for (int k = 0; k < col; k++) {
+                  m[i][j] += a[i][k] * b[k][j];
+               }
+            }
+         }
+
+         System.out.println("The multiplication of the two matrices is:");
+         for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col1; j++) {
+               System.out.print(m[i][j] + " ");
+            }
+            System.out.println();
+         }
+      }
+
+      sc.close();
+   }
+}

@@ -58,3 +58,154 @@ class ArrayOperations {
         ao.displayUnique();
     }
 }
+
+import java.util.*;
+
+public class Hello{
+   public static void main(String[] arg)
+   {
+     Scanner sc= new Scanner(System.in);
+      System .out.println("Enter the limit of column");
+      int col=sc.nextInt();
+      System.out.println("row limit");
+      int row= sc.nextInt();
+      int a[][]= new int [row][col];
+      int b[][]=new int [row][col]; 
+      for (int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+          System.out.println("Enter  elements");
+           a[i][j]=sc.nextInt();
+        }
+      }
+      System.out.println("The matrix is");
+      for (int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+          System.out.print(a[i][j]+"");
+        }
+        System.out.println(" ");
+      }
+      System.out.println("The second array");
+      for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+          System.out.println("Enter element");
+           b[i][j]=sc.nextInt();
+        }
+      }
+   System.out.println("The second array");
+      for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+          System.out.println("Enter element");
+           System.out.print(b[i][j]+" ");
+        }
+        System.out.println( " ");
+      }
+
+      int t[][]=new int[row][col];
+      for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+          t[i][j]=a[j][i];
+        }
+      }
+      System.out.println("The transpose of matrix is");
+      for(int i=0;i<col;i++){
+        for(int j=0;j<row;j++){
+          System.out.print(t[i][j]+" ");
+        }
+        System.out.println(" ");
+      }
+
+      int s[][]=new int[row][col];
+      for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+          s[i][j]=a[i][j]+b[i][j];
+        }
+      }
+      System.out.println("The sum of two matrix is");
+      for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+          System.out.print(s[i][j]+" ");
+        }
+        System.out.println(" ");
+      }
+   }
+
+}
+
+
+
+import java.util.Scanner;
+
+class Employee {
+    String name;
+    int empId;
+    double salary;
+
+    Employee(String name, int empId, double salary) {
+        this.name = name;
+        this.empId = empId;
+        this.salary = salary;
+    }
+
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+
+class Developer extends Employee {
+    String project;
+
+    Developer(String name, int empId, double salary, String project) {
+        super(name, empId, salary); // calling parent constructor
+        this.project = project;
+    }
+
+    void display() {
+        System.out.println("\n--- Developer Details ---");
+        super.display(); // call parent display
+        System.out.println("Project: " + project);
+    }
+}
+
+
+class Tester extends Employee {
+    String tool;
+
+    Tester(String name, int empId, double salary, String tool) {
+        super(name, empId, salary);
+        this.tool = tool;
+    }
+
+    void display() {
+        System.out.println("\n--- Tester Details ---");
+        super.display();
+        System.out.println("Testing Tool: " + tool);
+    }
+}
+
+public class EmployeeDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter Developer details (Name EmpId Salary Project):");
+        String dName = sc.next();
+        int dId = sc.nextInt();
+        double dSal = sc.nextDouble();
+        String dProj = sc.next();
+        Developer dev = new Developer(dName, dId, dSal, dProj);
+
+        System.out.println("Enter Tester details (Name EmpId Salary Tool):");
+        String tName = sc.next();
+        int tId = sc.nextInt();
+        double tSal = sc.nextDouble();
+        String tTool = sc.next();
+        Tester test = new Tester(tName, tId, tSal, tTool);
+
+        dev.display();
+        test.display();
+    }
+}
+
+
